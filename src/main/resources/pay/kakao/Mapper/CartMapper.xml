@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pay.kakao.Mapper.CartMapper">
+
+
+    <resultMap id="cartMap" type = "pay.kakao.VO.CartVO">
+        <result property="CartNO" column ="CartNO"/>
+    </resultMap>
+
+
+    <select id="cart">
+        select * from CartForPay;
+    </select>
+<!--    <select id="CartById" resultMap="cartMap" resultType="map">-->
+<!--    select * from CartForPay where partner_user_id=#{partner_user_id};-->
+<!--    </select>-->
+    <select id="getItem" resultType="String">
+        select item_name from CartForPay where partner_order_id = #{partner_order_id}
+    </select>
+    <select id="getQuantity" resultType="String">
+        select quantity from CartForPay where partner_order_id = #{partner_order_id}
+    </select>
+    <select id="getAmount" resultType="String">
+        select total_amount from CartForPay where partner_order_id = #{partner_order_id}
+    </select>
+    <select id="getUserId" resultType="String">
+        select partner_user_id from CartForPay where partner_order_id = #{partner_order_id}
+    </select>
+
+</mapper>
